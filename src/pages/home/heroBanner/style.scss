@@ -1,13 +1,13 @@
 @import "../../../mixins.scss";
 .heroBanner {
     width: 100%;
-    height: 450px;
+    height: 75vh;
     background-color: var(--black);
     display: flex;
     align-items: center;
     position: relative;
     @include md {
-        height: 700px;
+        height: 95vh;
     }
     .backdrop-img {
         width: 100%;

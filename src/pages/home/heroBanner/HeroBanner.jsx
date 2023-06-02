@@ -9,8 +9,10 @@ const HeroBanner = () => {
   const [background, setBackground] = useState("");
   const [query, setQuery] = useState("");
   const { url } = useSelector((state) => state.homeSlice);
+  const bannerTopic = ["now_playing","popular","upcoming","top_rated"]
+  const topic = bannerTopic[Math.floor(Math.random() * bannerTopic.length)];
   const navigate = useNavigate();
-  const { data, loading } = useFetch("/movie/upcoming");
+  const { data, loading } = useFetch(`/movie/${topic}`);
   useEffect(() => {
     const bg =
       url.backdrop +
@@ -19,43 +21,44 @@ const HeroBanner = () => {
   }, [data]);
 
   const searchQueryHandler = (event) => {
-    if (event.key === 'Enter' && query.length > 0) {
+    if (event.key === "Enter" && query.length > 0) {
       navigate(`/search/${query}`);
     }
   };
- 
+
   const searchQueryHandler2 = (event) => {
-    if ( query.length > 0) {
+    if (query.length > 0) {
       navigate(`/search/${query}`);
     }
   };
   return (
     <div className="heroBanner">
-            {!loading && (
-                <div className="backdrop-img">
-                    <Img src={background} />
-                </div>
-            )}
-
-            <div className="opacity-layer"></div>
-            <ContentWrapper>
-                <div className="heroBannerContent">
-                    <span className="title">Welcome</span>
-                    <span className="subTitle">
-                    Your Ultimate Movie Companion for Endless Entertainment at Your Fingertips
-                    </span>
-                    <div className="searchInput">
-                        <input
-                            type="text"
-                            placeholder="Search for a movie or tv show...."
-                            onChange={(e) => setQuery(e.target.value)}
-                            onKeyUp={searchQueryHandler}
-                        />
-                        <button onClick={searchQueryHandler2}>Search</button>
-                    </div>
-                </div>
-            </ContentWrapper>
+      {!loading && (
+        <div className="backdrop-img">
+          <Img src={background} />
         </div>
+      )}
+
+      <div className="opacity-layer"></div>
+      <ContentWrapper>
+        <div className="heroBannerContent">
+          <span className="title">Welcome</span>
+          <span className="subTitle">
+            Your Ultimate Movie Companion for Endless Entertainment at Your
+            Fingertips
+          </span>
+          <div className="searchInput">
+            <input
+              type="text"
+              placeholder="Search for a movie or tv show...."
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyUp={searchQueryHandler}
+            />
+            <button onClick={searchQueryHandler2}>Search</button>
+          </div>
+        </div>
+      </ContentWrapper>
+    </div>
   );
 };
 
