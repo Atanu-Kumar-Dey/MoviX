@@ -1,28 +1,29 @@
 import React, { useState } from "react";
+
+import Carousel from "../../../components/carousel/Carousel";
 import ContentWrapper from "../../../components/wrapperComponent/ContentWrapper";
 import SwitchTabs from "../../../components/switchTabs/SwitchTabs";
+import "./style.scss"
 import useFetch from "../../../hooks/useFetch";
-import Carousel from "../../../components/carousel/Carousel";
-import "./style.scss";
 
 const Trending = () => {
-  const [endPoint, setEndPoint] = useState("day");
-  const handleTabChange = (tab) => {
-    setEndPoint(tab === "Day" ? "day" : "week");
-  };
+    const [endpoint, setEndpoint] = useState("day");
 
-  const response = useFetch(`/trending/all/${endPoint}`);
-  console.log(`/trending/all/${endPoint}`)
-  const {data,loading} = response
-  return (
-    <div className="carouselSection">
-      <ContentWrapper>
-        <span className="carouselTitle">Trending</span>
-        <SwitchTabs data={["Days", "Weeks"]} onTabChange={()=>handleTabChange} />
-      </ContentWrapper>
-      <Carousel data={data?.results} loading={loading} />
-    </div>
-  );
+    const { data, loading } = useFetch(`/trending/movie/${endpoint}`);
+  console.log(endpoint)
+    const onTabChange = (tab) => {
+        setEndpoint(tab === "Day" ? "day" : "week");
+    };
+
+    return (
+        <div className="carouselSection">
+            <ContentWrapper>
+                <span className="carouselTitle">Trending</span>
+                <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
+            </ContentWrapper>
+            <Carousel data={data?.results} loading={loading} />
+        </div>
+    );
 };
 
 export default Trending;
