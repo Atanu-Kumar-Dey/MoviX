@@ -12,7 +12,7 @@ const HeroBanner = () => {
   const bannerTopic = ["now_playing","popular","upcoming","top_rated"]
   const topic = bannerTopic[Math.floor(Math.random() * bannerTopic.length)];
   const navigate = useNavigate();
-  const { data, loading } = useFetch(`/movie/${topic}`);
+  const { data, loading } = useFetch(`/movie/upcoming`);
   useEffect(() => {
     const bg =
       url.backdrop +

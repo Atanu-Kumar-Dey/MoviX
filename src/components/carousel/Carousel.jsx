@@ -15,10 +15,10 @@ import "./style.scss";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 
-const Carousel = ({ data, loading }) => {
+const Carousel = ({ title, data, loading, endpoint }) => {
   const { url } = useSelector((state) => state.homeSlice);
   const carouselContent = useRef();
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleMovement = (direction) => {
     const container = carouselContent.current;
 
@@ -44,12 +44,15 @@ const navigate = useNavigate();
     );
   };
 
-  const handleContent = (mediaType,id)=>{
-    navigate(`/${mediaType}/${id}`)
-  }
+  const handleContent = (mediaType, id) => {
+    const type = mediaType ? mediaType : endpoint;
+
+    navigate(`/${type}/${id}`);
+  };
   return (
     <div className="carousel">
       <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => handleMovement("left")}
@@ -62,7 +65,10 @@ const navigate = useNavigate();
           <div className="carouselItems" ref={carouselContent}>
             {data?.map((item) => {
               return (
-                <div className="carouselItem" key={item.id} onClick={()=>handleContent(item.media_type,item.id)}>
+                <div
+                  className="carouselItem"
+                  key={item.id}
+                  onClick={() => handleContent(item.media_type, item.id)}>
                   <div className="posterBlock">
                     {item.poster_path ? (
                       <Img src={url.poster + item.poster_path} />

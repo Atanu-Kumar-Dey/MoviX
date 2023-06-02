@@ -40,7 +40,7 @@ const App = () => {
       promises.push(fetchDataFromApi(`/genre/${url}/list`));
     });
     const data = await Promise.all(promises);
-    console.log(data);
+
     data.map(({ genres }) => {
       genres.map((item) => (allGenres[item.id] = item));
     });
