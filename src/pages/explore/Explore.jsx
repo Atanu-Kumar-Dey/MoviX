@@ -33,13 +33,11 @@ const Explore = () => {
   const [genre, setGenre] = useState(null);
   const [sortby, setSortby] = useState(null);
   const { mediaType } = useParams();
-console.log(mediaType)
   const modifliedMovie = mediaType === "movies" && mediaType.slice(0,-1);
 
   const { data: genresData } = useFetch(
     `/genre/${mediaType === "movies" ? modifliedMovie : mediaType}/list`
   );
-  console.log(genresData);
   const fetchInitialData = () => {
     setLoading(true);
     fetchDataFromApi(`/discover/${mediaType}`, filters).then((res) => {
