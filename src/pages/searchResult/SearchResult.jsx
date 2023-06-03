@@ -5,7 +5,7 @@ import { fetchDataFromApi } from "../../utils/api";
 import Spinner from "../../components/spinner/Spinner";
 import ContentWrapper from "../../components/wrapperComponent/ContentWrapper";
 import InfiniteScroll from "react-infinite-scroll-component";
-import MovieCard from "../../components/movieCard/movieCard";
+import MovieCard from "../../components/movieCard/MovieCard";
 const SearchResult = () => {
   const [data, setData] = useState(null);
   const [pageNum, setPageNum] = useState(1);
