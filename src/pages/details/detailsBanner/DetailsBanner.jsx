@@ -23,7 +23,7 @@ const DetailsBanner = ({ video, crew }) => {
     (f) => f.job === "Screenplay" || f.job === "Writer" || f.job === "Story"
   );
   const director = crew?.filter((f) => f.job === "Director");
-  console.log(director)
+  // console.log(director)
   const toHoursAndMinutes = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;

@@ -108,18 +108,15 @@
                 aspect-ratio: 1 / 1.5;
                 background-size: cover;
                 background-position: center;
-                opacity: 0.9;
+                opacity: 0.7;
                 margin-bottom: 20px;
                 display: flex;
                 align-items: flex-end;
                 justify-content: space-between;
+                transition: all ease 0.5s;
                 padding: 10px;
                 @include sm {
                     margin-bottom: 30px;
-                }
-                &:hover {
-                    opacity: 1;
-                    animation-delay: 0.5s;
                 }
                 .lazy-load-image-background {
                     position: absolute;
@@ -174,6 +171,11 @@
                 .date {
                     font-size: 12px;
                     opacity: 0.5;
+                }
+            }
+            &:hover {
+                .posterBlock {
+                    opacity: 1;
                 }
             }
         }
